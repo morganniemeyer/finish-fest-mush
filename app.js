@@ -73,12 +73,13 @@ addFriendForm.addEventListener('submit', (e) => {
     // > set the message state to let the user know
     // they invited a new friend to the festival, include the friend's
     // name in the message
-    message = 'You invited ${friend.name} to the feast!';
+    message = `You invited ${friend.name} to the feast!`;
 
     addFriendForm.reset();
 
     // > call the display functions that need to re-display
     displayFriends();
+    displayMessage();
 });
 
 sayGoodbyeButton.addEventListener('click', () => {
@@ -86,6 +87,9 @@ sayGoodbyeButton.addEventListener('click', () => {
     for (const friend of friends) {
         // > if the friend is not fully satisfied, push
         // them into the stillHungry array
+        if (friend of friends) {
+            stillHungry.push(friend);
+        }    
     }
     friends = stillHungry;
     displayFriends();
@@ -121,7 +125,7 @@ function displayFriends() {
                 message = 'The feast is barren! Go hunt more mushrooms.';
                 // 2. Friend is already fully satisfied (3), set a message to pick another friend
             } else if (friend.satisfied === 3) {
-                message = '${friend.name} is super stuffed! Feed someone else!';
+                message = `${friend.name} is super stuffed! Feed someone else!`;
                 // 3. Feed friend mushroom:
             } else {
                 // a. "pop" a mushroom off the mushrooms array
@@ -130,7 +134,7 @@ function displayFriends() {
                 friend.satisfied++;
                 // c. set a message that the friend enjoyed the mushroom,
                 //    include the friend name and mushroom type in the message
-                message = '${friend.name} loved the ${mushroom.type}.';
+                message = `${friend.name} loved the ${mushroom.type}.`;
             }
 
             displayMessage();
